@@ -15,3 +15,5 @@ SELECT mobappversion, count(*)
 FROM usersessions
 WHERE mobosversion < 80 OR mobosversion IS NULL
 GROUP BY mobappversion;
+
+--EST: 1h
