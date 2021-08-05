@@ -1,5 +1,8 @@
 package testapplication.testTask.task1;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class TestApp1 {
 
     public static void main(String[] args) {
@@ -32,20 +35,11 @@ public class TestApp1 {
 
         @Override
         protected String formattingString() {
-            StringBuilder result = new StringBuilder();
-            String[] words = fio.toLowerCase().split("[\\s, \\-, \']");
-            String[] separators = fio.replaceAll("[^\\s, \\-, \']", "").split("");
-            for (int i = 0; i < words.length; i++) {
-                words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1);
-            }
-            for (int i = 0; i < words.length; i++) {
-                result = result.append(words[i]);
-                if (i < separators.length) {
-                    result.append(separators[i]);
-                }
-            }
-            return result.toString();
+            String[] words = fio.toLowerCase().split("(?<=[\'\\s\\-])");
+            return Arrays.stream(words)
+                    .map(string -> string.substring(0,1).toUpperCase() + string.substring(1))
+                    .collect(Collectors.joining());
         }
     }
 }
-//EST: 2h
+//EST: 3h

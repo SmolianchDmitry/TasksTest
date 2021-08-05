@@ -4,7 +4,11 @@ WHERE u.userid IS NULL;
 
 SELECT userid
 FROM usersessions
-WHERE channeltype != 1
+GROUP BY userid
+EXCEPT
+SELECT userid
+FROM usersessions
+WHERE mobappversion = 1
 GROUP BY userid;
 
 SELECT max(USERS.userid)
@@ -13,7 +17,7 @@ WHERE status != 1;
 
 SELECT mobappversion, count(*)
 FROM usersessions
-WHERE mobosversion < 80 OR mobosversion IS NULL
+WHERE (mobosversion < 80 OR mobosversion IS NULL) AND channeltype = 9
 GROUP BY mobappversion;
 
 --EST: 1h

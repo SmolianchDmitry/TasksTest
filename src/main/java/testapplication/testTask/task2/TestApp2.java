@@ -1,4 +1,4 @@
-﻿package testapplication.testTask.task2;
+package testapplication.testTask.task2;
 
 import java.util.HashMap;
 import java.util.Map;
